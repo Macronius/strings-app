@@ -1,21 +1,11 @@
-import { Client } from "pg";
-import { loadEnvConfig } from "@next/env";
 import { faker } from "@faker-js/faker";
 import bcrypt from "bcrypt";
+import { getClient } from "@/db";
 
-const projectDir = process.cwd();
-// loadEnvConfig takes what is in .env.local file and loads as environment variables to make available using process.env
-loadEnvConfig(projectDir);
 
 async function loadFakeData(numUsers: number = 10) {
   // INSTANTIATE CLIENT INSTANCE OF DATABASE
-  const client = new Client({
-    user: process.env.POSTGRES_USER,
-    host: process.env.POSTGRES_HOST,
-    database: process.env.POSTGRES_NAME,
-    password: process.env.POSTGRES_PASSWORD,
-    port: parseInt(process.env.POSTGRES_PORT!),
-  });
+  const client = await getClient();
 
   // TRANSACTION "not necessary because this is development script"
   await client.connect();
@@ -40,7 +30,7 @@ async function loadFakeData(numUsers: number = 10) {
       "select id from public.users order by created_at desc limit $1",
       [numUsers]
     );
-    // console.log(res.rows);
+    console.log(res.rows);
 
     for (const row of res.rows) {
       for (let i = 0; i < Math.ceil(Math.random() * 10); i++) {
@@ -75,15 +65,7 @@ async function loadFakeData(numUsers: number = 10) {
 }
 
 // 
-// console.log("===== 1 =====");
-// console.log(process.argv);
-// console.log(process.argv[0]);
-// console.log(process.argv[1]);
-// console.log(process.argv[2]);
-// console.log("===== 2 =====");
-const numUsers = parseInt(process.argv[2]) || 12;
-// QUESTION: what is at process.argv[2] ?
-
+const numUsers = parseInt(process.argv[2]) || 10;
+//
 console.log(`loading ${numUsers} fake users`);
 loadFakeData(numUsers);
-// NOTE: cannot load fake data if the tables do not exist already
