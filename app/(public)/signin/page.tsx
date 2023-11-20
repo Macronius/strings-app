@@ -2,7 +2,7 @@
 
 import Form from "./form";
 
-export default function () {
+export default function SignIn() {
   return (
     <>
       {/* <h2>Sign In</h2> */}
