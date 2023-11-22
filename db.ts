@@ -7,6 +7,14 @@ loadEnvConfig(projectDir);
 
 // helper function
 export async function getClient(): Promise<Client> {
+  // PRODUCTION
+  if (process.env.POSTGRES_URL) {
+    const client = new Client({
+      connectionString: process.env.POSTGRES_URL + "?sslmode=require"
+    });
+    return client;
+  }
+  // DEVELOPMENT
   const client = new Client({
     user: process.env.POSTGRES_USER,
     host: process.env.POSTGRES_HOST,
@@ -14,7 +22,6 @@ export async function getClient(): Promise<Client> {
     password: process.env.POSTGRES_PASSWORD,
     port: parseInt(process.env.POSTGRES_PORT!),
   });
-
   return client;
 }
 
