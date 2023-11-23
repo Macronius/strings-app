@@ -4,13 +4,14 @@ import { loadEnvConfig } from "@next/env";
 
 const projectDir = process.cwd();
 loadEnvConfig(projectDir);
+// loadEnvConfig(process.cwd());
 
 // helper function
 export async function getClient(): Promise<Client> {
   // PRODUCTION
   if (process.env.POSTGRES_URL) {
     const client = new Client({
-      connectionString: process.env.POSTGRES_URL + "?sslmode=require"
+      connectionString: process.env.POSTGRES_URL + "?sslmode=require",
     });
     return client;
   }
@@ -30,12 +31,10 @@ export async function sql(
   sql: string,
   values?: Array<any>
 ): Promise<QueryResult<any>> {
-  console.log(process.cwd);
   const client = await getClient();
+  //
   await client.connect();
-  //
   const res = await client.query(sql, values);
-  //
   await client.end();
   //
   return res;
