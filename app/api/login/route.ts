@@ -8,13 +8,12 @@ import { SignJWT } from "jose";
 export async function POST(request: Request) {
   // QUERY USER DATA
   const json = await request.json();
-  console.log(`json.password: ${json.password}`);
   //
   const res = await sql(
     "select id, username, password from users where username ilike $1",
     [json.username]
   );
-  //   console.log(res);
+    console.log(res);
 
   // USER CONFIRMATION
   if (res.rowCount === 0) {
@@ -22,8 +21,7 @@ export async function POST(request: Request) {
   }
 
   // AUTHENTICATE
-  const user = res.rows[0];
-//   console.log(`user.password: ${user.password}`);
+  const user = res.rows[0]; // NOTE: the result object has a key called rows
   const match = await bcrypt.compare(json.password, user.password);
   if (!match) {
     return NextResponse.json({ error: "invalid credentials" }, { status: 401 });
@@ -34,7 +32,7 @@ export async function POST(request: Request) {
     .setProtectedHeader({ alg: "HS256" }) // algorithm
     .setSubject(user.id) // usually the primary key of the user
     .setExpirationTime("2w") // 2 weeks
-    .sign(new TextEncoder().encode("my-jwt-secret"));
+    .sign(new TextEncoder().encode(process.env.JWT_SECRET));
 
   //
   const response = NextResponse.json({ msg: "login success" });
