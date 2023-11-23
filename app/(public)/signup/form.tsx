@@ -22,7 +22,9 @@ function Form() {
     // validation that passwords match
     if (password !== confirmPassword) {
       // TODO: correct this is bad practice to directly change state without setFunction
-      errors.push("Passwords must match");
+      const newErrors = [];
+      newErrors.push("Passwords must match");
+      setErrors(newErrors);
       // setErrors(() => [...errors, "Passwords must match"]);
       return;
     }
@@ -97,6 +99,13 @@ function Form() {
       <button type="submit" className="mt-4 bg-slate-900  p-3 rounded-lg">
         Submit
       </button>
+      {
+        errors && errors.map(error => (
+          <div key={error} className="text-red-600">
+            {error}
+          </div>
+        ))
+      }
     </form>
   );
 }
