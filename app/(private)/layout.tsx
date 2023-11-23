@@ -1,3 +1,7 @@
+import NavBar from "./navbar";
+import Header from './header'
+import Footer from './footer'
+
 export default function PrivateLayout({
     children,
   }: {
@@ -5,7 +9,10 @@ export default function PrivateLayout({
   }) {
     return (
       <>
+        <Header />
+        <NavBar />
         <main>{children}</main>
+        <Footer />
       </>
     );
   }
