@@ -4,10 +4,12 @@ import { getClient } from "@/db";
 
 
 async function loadFakeData(numUsers: number = 10) {
+  console.log(`executing load-fake-data.ts - generating ${numUsers} users.`);
+
   // INSTANTIATE CLIENT INSTANCE OF DATABASE
   const client = await getClient();
 
-  // TRANSACTION "not necessary because this is development script"
+  // TRANSACTION STYLE SYNTAX "not necessary because this is development script"
   await client.connect();
   try {
     //
@@ -30,10 +32,11 @@ async function loadFakeData(numUsers: number = 10) {
       "select id from public.users order by created_at desc limit $1",
       [numUsers]
     );
+    console.log("res.rows")
     console.log(res.rows);
 
     for (const row of res.rows) {
-      for (let i = 0; i < Math.ceil(Math.random() * 10); i++) {
+      for (let i = 0; i < Math.ceil(Math.random() * 50); i++) {
         await client.query(
           "insert into public.posts (user_id, content) values ($1, $2)",
           [row.id, faker.lorem.sentence()]

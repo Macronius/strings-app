@@ -6,9 +6,8 @@ function Form() {
   // states
   const [username, setUsername] = useState<undefined | string>("");
   const [password, setPassword] = useState<undefined | string>("");
-  const [confirmPassword, setConfirmPassword] = useState<undefined | string>(
-    ""
-  );
+  const [avatar, setAvatar] = useState<undefined | string>("");
+  const [confirmPassword, setConfirmPassword] = useState<undefined | string>("");
   // error handling (a different way than alerts)
   const [errors, setErrors] = useState<string[]>([]);
 
@@ -32,7 +31,8 @@ function Form() {
     // use AJAX to handle the signup
     const res = await fetch("/api/signup", {
       method: "post",
-      body: JSON.stringify({ username, password }),
+      // body: JSON.stringify({ username, password }),
+      body: JSON.stringify({username, avatar, password}),
     });
     //
     if (res.ok) {
@@ -68,6 +68,21 @@ function Form() {
           />
         </div>
       </div>
+
+      <div className="flex flex-col gap-2">
+        <div>
+          <label>Avatar</label>
+          <input
+            type="text"
+            className="text-black p-3 border border-slate-700 rounded-lg"
+            onChange={e => setAvatar(e.target.value)}
+            value={avatar}
+            id="avatar"
+            placeholder="Avatar"
+          />
+        </div>
+      </div>
+
       <div className="flex flex-col gap-2">
         <div>
           <label>Password</label>

@@ -20,9 +20,10 @@ export async function POST(request: Request) {
   // if new user, then create new user
   const saltRounds = 10;
   const hash = await bcrypt.hash(json.password, saltRounds);
-  await sql("insert into users (username, password) values ($1, $2)", [
+  await sql("insert into users (username, password, avatar) values ($1, $2, $3)", [
     json.username,
     hash,
+    json.avatar,
   ]);
 
   return NextResponse.json({msg: "registration success"}, {status: 201});
