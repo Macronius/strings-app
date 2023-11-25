@@ -1,7 +1,7 @@
 "use client";
 
 import { SWRConfig } from "swr";
-import fetcherCBFunction from "../utils/fetcher";
+import fetcher from "../utils/fetcher";
 
 import NavBar from "./navbar";
 import Header from "./header";
@@ -13,7 +13,7 @@ export default function PrivateLayout({
   children: React.ReactNode;
 }) {
   return (
-    <SWRConfig value={{ fetcher: fetcherCBFunction }}>
+    <SWRConfig value={{ fetcher: fetcher }}>
       <div className="flex flex-col min-h-screen max-w-md m-auto items-center justify-center">
         <Header />
         <NavBar />

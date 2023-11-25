@@ -8,6 +8,7 @@ const fetcherCBFunction = async (url: RequestInfo | URL) => {
         const info  = await res.json();
         const status = res.status;
         //
+        console.log("error from the fetcher")
         console.error(info, status);
         throw error;
     }

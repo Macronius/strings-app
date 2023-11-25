@@ -20,6 +20,7 @@ function User({user, href}: {user: UserI, href?: string}) {
                             width={50} 
                             height={50}
                             className="rounded-full mr-3"
+                            priority
                         />
                     )}
 
