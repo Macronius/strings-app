@@ -1,5 +1,7 @@
 export default function Footer() {
     return (
-        <footer>Footer</footer>
+        <footer>
+            &copy; Sxrings {new Date().getFullYear()}
+        </footer>
     )
 }

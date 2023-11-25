@@ -14,7 +14,7 @@ export default function Header() {
     return (
         <header className="flex w-full p-5 bg-slate-800 rounded-lg my-2 justify-between items-center">
             <div>
-                <h1 className="font-mono text-lg">Sxrings (Xwitter clone)</h1>
+                <h1 className="font-mono text-lg">Sxrings</h1>
             </div>
             <div>
                 <User user={data.data} />
