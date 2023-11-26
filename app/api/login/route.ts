@@ -13,7 +13,6 @@ export async function POST(request: Request) {
     "select id, username, password from users where username ilike $1",
     [json.username]
   );
-    console.log(res);
 
   // USER CONFIRMATION
   if (res.rowCount === 0) {

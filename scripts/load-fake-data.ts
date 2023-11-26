@@ -2,7 +2,6 @@ import { faker } from "@faker-js/faker";
 import bcrypt from "bcrypt";
 import { getClient } from "@/db";
 
-
 async function loadFakeData(numUsers: number = 10) {
   console.log(`executing load-fake-data.ts - generating ${numUsers} users.`);
 
@@ -11,6 +10,7 @@ async function loadFakeData(numUsers: number = 10) {
 
   // TRANSACTION STYLE SYNTAX "not necessary because this is development script"
   await client.connect();
+
   try {
     //
     await client.query("begin");
@@ -32,8 +32,6 @@ async function loadFakeData(numUsers: number = 10) {
       "select id from public.users order by created_at desc limit $1",
       [numUsers]
     );
-    console.log("res.rows")
-    console.log(res.rows);
 
     for (const row of res.rows) {
       for (let i = 0; i < Math.ceil(Math.random() * 50); i++) {
@@ -67,7 +65,7 @@ async function loadFakeData(numUsers: number = 10) {
   }
 }
 
-// 
+//
 const numUsers = parseInt(process.argv[2]) || 10;
 //
 console.log(`loading ${numUsers} fake users`);

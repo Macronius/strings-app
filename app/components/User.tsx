@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const tempAvatar = "https://avatars.githubusercontent.com/u/76920706"
+// const tempAvatar = "https://avatars.githubusercontent.com/u/76920706"
 
 
 function User({user, href}: {user: UserI, href?: string}) {
@@ -9,7 +9,7 @@ function User({user, href}: {user: UserI, href?: string}) {
     return (
         <div>
             <Link 
-                href={`${href || user.username}`}
+                href={`/${href || user.username}`}
                 className="flex items-center"
             >
                 <div>
