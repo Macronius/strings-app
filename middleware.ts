@@ -1,6 +1,8 @@
 import { jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
+
+// AUTHENTICATION MIDDLEWARE
 export async function middleware(request: NextRequest) {
   //
   const pathname = request.nextUrl.pathname;
@@ -11,7 +13,10 @@ export async function middleware(request: NextRequest) {
   ];
   //
   if (authenticatedAPIRoutes.includes(true)) {
+    const cook = request .cookies.has("jwt-token");
+    cook && console.log("jwt-token present");
     const cookie = request.cookies.get("jwt-token");
+    cook && console.log(cookie);
     //
     if (!cookie || !cookie.value) {
       return NextResponse.json({ error: "unauthenticated" }, { status: 401 });

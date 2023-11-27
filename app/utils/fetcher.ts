@@ -1,4 +1,4 @@
-const fetcherCBFunction = async (url: RequestInfo | URL) => {
+const fetcherCallbackFunction = async (url: RequestInfo | URL) => {
     const res = await fetch(url);
     //
     if (!res.ok) {
@@ -14,4 +14,4 @@ const fetcherCBFunction = async (url: RequestInfo | URL) => {
     return res.json();
 }
 
-export default fetcherCBFunction;
+export default fetcherCallbackFunction;
