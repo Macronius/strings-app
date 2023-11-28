@@ -25,24 +25,53 @@ export async function GET(
   return NextResponse.json({ data: res.rows[0] });
 }
 
-
 // PATCH endpoint
-export async function PATCH(request: Request, {params}: {params: {id: number}}) {
-    // will want to send through body any new content
-    const body = await request.json();
-    // user should only be able to update their own posts
-    const jwtPayload = await getJWTPayload();
-    //
-    const res = await sql(
-        `select * from posts where user_id = $1 and id = $2`,
-        [jwtPayload.sub, params.id]
-    );
-    //
-    if (res.rowCount === 0) {
-        return NextResponse.json({error: "not found"}, {status: 404});
-    }
-    await sql(`update posts set content = $1 where user_id = $2 and id = $3`,
-    [body.content, jwtPayload.sub, params.id]);
-    //
-    return NextResponse.json({msg: "update success"})
+export async function PATCH(
+  request: Request,
+  { params }: { params: { id: number } }
+) {
+  // will want to send through body any new content
+  const body = await request.json();
+  // user should only be able to update their own posts
+  const jwtPayload = await getJWTPayload();
+  //
+  const res = await sql(`select * from posts where user_id = $1 and id = $2`, [
+    jwtPayload.sub,
+    params.id,
+  ]);
+  //
+  if (res.rowCount === 0) {
+    return NextResponse.json({ error: "not found" }, { status: 404 });
+  }
+  await sql(`update posts set content = $1 where user_id = $2 and id = $3`, [
+    body.content,
+    jwtPayload.sub,
+    params.id,
+  ]);
+  //
+  return NextResponse.json({ msg: "update success" });
+}
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: number } }
+) {
+  // get user and post ids
+  const post_id = params.id;
+  const jwtPayload = await getJWTPayload();
+  const user_id = jwtPayload.sub;
+  //
+  const res = await sql(`delete from posts where user_id = $1 and id = $2`, [
+    user_id,
+    post_id,
+  ]);
+  console.log("delete post sql() response")
+  console.log(res.rowCount)
+
+  //
+  if (res.rowCount === 1) {
+    return NextResponse.json({msg: "post successfully deleted"});
+  } else {
+    return NextResponse.json({error: "post not found"}, {status: 404})
+  }
 }

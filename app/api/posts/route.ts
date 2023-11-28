@@ -14,7 +14,7 @@ export async function GET(request: Request) {
     const username = searchParams.get("username");
     const page = (searchParams.get("page") && parseInt(searchParams.get("page")!)) || 0;
     //
-    const limit = 1;
+    const limit = 3;
     const offset = page*limit;
 
     //

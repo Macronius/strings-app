@@ -8,11 +8,18 @@ import { SignJWT } from "jose";
 export async function POST(request: Request) {
   // QUERY USER DATA
   const json = await request.json();
-  //
+  console.log("request")
+  console.log(request)
+  console.log("json")
+  console.log(json)
+  
+  // given a username in request, search database for matching username and corresponding password
   const res = await sql(
     "select id, username, password from users where username ilike $1",
     [json.username]
   );
+  console.log("_____res from api>login, sql() result")
+  console.log(res)
 
   // USER CONFIRMATION
   if (res.rowCount === 0) {
