@@ -37,3 +37,22 @@ export async function GET(request: Request) {
     //
     return NextResponse.json({data: res.rows});
 }
+
+// create new post
+export async function POST(request: Request) {
+    //
+    const jwtPayload = await getJWTPayload();
+    const user_id = jwtPayload.sub;
+    //
+    const json = await request.json();
+    const content = json.content;
+    //
+    const res = await sql(
+        `insert into posts (user_id, content) values ($1, $2) returning *`, 
+        [user_id, content]
+    );
+    console.log("app > api > posts > PUT: create-post");
+    console.log(res)
+    //
+    return NextResponse.json({data: res.rows[0]}, {status: 201});
+}

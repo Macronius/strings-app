@@ -16,8 +16,8 @@ export async function GET(
     [params.id, jwtPayload.sub]
     // NOTE: the user should only be able to get a single post for their own post. we don't want them to be able to get posts of another user.
   );
-  console.log("______res");
-  console.log(res);
+//   console.log("______res");
+//   console.log(res);
   //
   if (res.rowCount === 0) {
     return NextResponse.json({ error: "not found" }, { status: 404 });
@@ -65,8 +65,8 @@ export async function DELETE(
     user_id,
     post_id,
   ]);
-  console.log("delete post sql() response")
-  console.log(res.rowCount)
+//   console.log("delete post sql() response")
+//   console.log(res.rowCount)
 
   //
   if (res.rowCount === 1) {
