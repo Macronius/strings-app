@@ -1,8 +1,13 @@
+"use client"
+
 import React from 'react'
+import FollowersContainer from './followers-container'
 
 const Followers = () => {
   return (
-    <div>Followers</div>
+    <main>
+      <FollowersContainer />
+    </main>
   )
 }
 
