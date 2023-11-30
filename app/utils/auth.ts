@@ -12,8 +12,8 @@ export async function getJWTPayload() {
   const secret_verification_key = new TextEncoder().encode(process.env.JWT_SECRET!);
   // verify token against the secret_verification_key
   const { payload, protectedHeader } = await jwtVerify(token?.value!, secret_verification_key);
-  console.log("app > utils > auth.ts > getJWTPayload: payload");
-  console.log(payload);
+  // console.log("app > utils > auth.ts > getJWTPayload: payload");
+  // console.log(payload);
   //
   return payload;
 }

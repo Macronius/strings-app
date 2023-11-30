@@ -1,9 +1,18 @@
-import React from 'react'
+import useSWR from "swr";
+import FollowingContainer from './following-container'
 
-const Following = () => {
+export default async function Following() {
+  //
+  // const { data, isLoading, error } = useSWR("/api/users/:id/following");
+  // //
+  // if (error) return <div>failed to load</div>;
+  // if (isLoading) return <div>Loading...</div>;
+
+  //
   return (
-    <div>Following</div>
-  )
+    <main>
+      <h2>Following</h2>
+      <FollowingContainer />
+    </main>
+  );
 }
-
-export default Following

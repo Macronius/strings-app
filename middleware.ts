@@ -13,14 +13,20 @@ export async function middleware(request: NextRequest) {
   ];
   //
   if (authenticatedAPIRoutes.includes(true)) {
+
+    // check if cookie
     const cook = request .cookies.has("jwt-token");
-    cook && console.log("jwt-token present");
+    // cook && console.log("jwt-token present");
+
+    // get cookie
     const cookie = request.cookies.get("jwt-token");
-    cook && console.log(cookie);
+    // cook && console.log(cookie);
+
     //
     if (!cookie || !cookie.value) {
       return NextResponse.json({ error: "unauthenticated" }, { status: 401 });
     }
+
     //
     try {
       const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
@@ -33,6 +39,7 @@ export async function middleware(request: NextRequest) {
   }
 }
 
+// QUESTION: how is this utilized?
 export const config = {
   matcher: "/:path*",
 };
