@@ -17,7 +17,7 @@ export default function Header() {
                 <h1 className="font-mono text-lg">Sxrings</h1>
             </div>
             <div>
-                <User user={user} />
+                <User user={user} href="account" />
             </div>
         </header>
     )

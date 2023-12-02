@@ -4,9 +4,13 @@ import Link from "next/link";
 // const tempAvatar = "https://avatars.githubusercontent.com/u/76920706"
 
 function User({ user, href }: { user: UserI; href?: string }) {
+  console.log(href)
   return (
     <div>
-      <Link href={`/${href || user.username}`} className="flex items-center">
+      <Link 
+        href={`/${href || user.username}`} 
+        className="flex items-center"
+      >
         <div>
           {user.avatar && (
             <Image
@@ -15,7 +19,7 @@ function User({ user, href }: { user: UserI; href?: string }) {
               width={50}
               height={50}
               className="rounded-full mr-3"
-              priority
+              // priority
             />
           )}
 
