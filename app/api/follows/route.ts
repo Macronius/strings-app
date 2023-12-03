@@ -43,6 +43,7 @@ export async function POST(request: Request) {
         "insert into follows (user_id, follower_id) values ($1, $2)",
         [json.user_id, jwtPayload.sub]
     );
-    return NextResponse.json({msg: "follow success"});
 
+    //
+    return NextResponse.json({msg: "follow success"});
 }
