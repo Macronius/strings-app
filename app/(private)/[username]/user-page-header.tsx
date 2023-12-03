@@ -48,12 +48,10 @@ const UserPageHeader = ({ username }: { username: string }) => {
 
 
   return (
-    <header>
-      <div>
-        <h1>{username}</h1>
-        {dataFollow.data.length > 0 && <button onClick={handleUnfollow}>Unfollow</button>}
-        {dataFollow.data.length === 0 && <button onClick={handleFollow}>Follow</button>}
-      </div>
+    <header className="w-full bg-slate-700 p-4 rounded-lg flex mb-4 justify-between items-center">
+        <h1 className="text-lg font-bold">{username}</h1>
+        {dataFollow.data.length > 0 && <button onClick={handleUnfollow} className="bg-slate-900 p-2 rounded-lg">Unfollow</button>}
+        {dataFollow.data.length === 0 && <button onClick={handleFollow} className="bg-slate-900 p-2 rounded-lg">Follow</button>}
     </header>
   );
 };

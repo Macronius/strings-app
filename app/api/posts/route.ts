@@ -26,11 +26,22 @@ export async function GET(request: Request) {
         limit $2 offset $3
     `;
 
-    // if username is passed in, then also search for other users
+    // IF USERNAME IS PASSED IN, then also search for other users
     if (username) {
-        // TODO: use for profile page of other users
+        //
+        const userRes = await sql("select * from users where username = $1", [username]);
+        //
+        if (userRes.rowCount === 0) {
+            return NextResponse.json({error: "not found"}, {status: 404});
+        }
+        const user = userRes.rows[0];
+        //
+        const postsRes = await sql(query_statement, [user.id, limit, offset]);
+        //
+        return NextResponse.json({data: postsRes.rows})
     }
-    // if username is not passed in, then fetch the posts for currently logged-in user
+
+    // IF USERNAME IS NOT PASSED IN, then fetch the posts for currently logged-in user
     // currently logged-in user functionality
     const res = await sql(query_statement, [jwtPayload.sub, limit, offset]);
 
