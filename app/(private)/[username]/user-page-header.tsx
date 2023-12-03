@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import useSWR, {mutate} from "swr";
 
 // QUESTION: why does this need a separate component?
@@ -22,6 +23,10 @@ const UserPageHeader = ({ username }: { username: string }) => {
   if (isLoadingUser || isLoadingFollow) return <div>Loading...</div>;
 
   console.log(dataUser, dataFollow);
+
+  if (dataUser.data.length === 0) {
+    notFound()
+  }
 
   //
   const user = dataUser.data[0];
