@@ -1,10 +1,15 @@
 "use client";
 
 import { useState, ChangeEvent } from "react";
+import * as _ from 'lodash';
 
 export default function SearchBar() {
   // state
   const [searchResults, setSearchResults] = useState([]);
+
+  // utility functions
+  const debouncedFetchSearchResults = _.debounce(fetchSearchResults, 500);
+  // NOTE: only when user stops typing for 0.5s does the fetch send the request
 
   //
   async function fetchSearchResults(searchText: string) {
@@ -19,7 +24,9 @@ export default function SearchBar() {
 
   // handler function
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    fetchSearchResults(e.target.value);
+    if (e.target.value.length > 0) {
+        debouncedFetchSearchResults(e.target.value);
+    }
   }
 
   return (
