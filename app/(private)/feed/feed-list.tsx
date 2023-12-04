@@ -4,6 +4,7 @@ import Post from '../../components/Post'
 function FeedList ({index}: {index: number}) {
     //
     const {data, isLoading, error} = useSWR("/api/posts/feed?pages="+index);
+    console.log("_____ data from feed-list")
     console.log(data)
 
     if (error) return <div>failed to load</div>
@@ -12,9 +13,8 @@ function FeedList ({index}: {index: number}) {
     //
     return (
         <ul>
-            {data.data.map((post: PostI, index: number) => (
+            {data.data.map((post: PostI) => (
                 <li 
-                    // key={index}
                     key={post.id}
                     className="my-5"
                 >
