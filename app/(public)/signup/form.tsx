@@ -30,7 +30,7 @@ function Form() {
 
     // use AJAX to handle the signup
     const res = await fetch("/api/signup", {
-      method: "post",
+      method: "POST",
       // body: JSON.stringify({ username, password }),
       body: JSON.stringify({username, avatar, password}),
     });

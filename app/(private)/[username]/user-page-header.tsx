@@ -33,7 +33,7 @@ const UserPageHeader = ({ username }: { username: string }) => {
 
   // onClick handler functions:
   async function handleUnfollow() {
-    const res = await fetch(`/api/follows/${user.id}`, {method: "delete"});
+    const res = await fetch(`/api/follows/${user.id}`, {method: "DELETE"});
     if (res.ok) {
         // force revalidation of useSWR(() => `/api/follows?user_id=${dataUser.data[0].id}`), refetch, then the data will repropogate to the UI
         mutate(`/api/follows?user_id=${user.id}`);
@@ -42,7 +42,7 @@ const UserPageHeader = ({ username }: { username: string }) => {
   }
 
   async function handleFollow() {
-    const res = await fetch("/api/follows", {method: "post", body: JSON.stringify({user_id: user.id})});
+    const res = await fetch("/api/follows", {method: "POST", body: JSON.stringify({user_id: user.id})});
     if (res.ok) {
         // force revalidation of useSWR(() => `/api/follows?user_id=${dataUser.data[0].id}`), refetch, then the data will repropogate to the UI
         mutate(`/api/follows?user_id=${user.id}`);

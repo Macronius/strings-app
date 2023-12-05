@@ -15,7 +15,7 @@ function Form() {
     e.preventDefault();
     // use AJAX to handle the login
     const res = await fetch("/api/login", {
-      method: "post",
+      method: "POST",
       body: JSON.stringify({ username, password }),
     });
     //
