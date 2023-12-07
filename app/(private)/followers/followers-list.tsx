@@ -9,7 +9,7 @@ export default function FollowersList({index}: {index: number}) {
 
     // NOTE: because this is constantly fetching, one could assume that if the data isn't there, then it is between fetches
     if (!followerData) return <div>Loading...</div>
-    console.log(followerData)
+    // console.log(followerData)
 
     //
     return (

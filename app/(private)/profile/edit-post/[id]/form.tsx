@@ -2,13 +2,11 @@
 
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-// import { useSWRConfig } from "swr";
 
 function Form({ post }: { post: PostI }) {
   const router = useRouter();
-  // const {mutate} = useSWRConfig();
   const [content, setContent] = useState(post.content);
-  console.log(router);
+  // console.log(router);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();

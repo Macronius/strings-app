@@ -13,7 +13,7 @@ export default function EditPost({params}: {params: {id: number}}) {
     if (error) return <div>failed to load</div>
     if (isLoading) return <div>Loading...</div>
 
-    console.log(data);
+    // console.log(data);
 
     //
     return (

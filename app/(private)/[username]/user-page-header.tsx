@@ -22,7 +22,7 @@ const UserPageHeader = ({ username }: { username: string }) => {
   if (errorUser || errorFollow) return <div>Failed to load</div>;
   if (isLoadingUser || isLoadingFollow) return <div>Loading...</div>;
 
-  console.log(dataUser, dataFollow);
+  // console.log(dataUser, dataFollow);
 
   if (dataUser.data.length === 0) {
     notFound()

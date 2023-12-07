@@ -7,7 +7,7 @@ export async function GET(
 ) {
     //
     const {searchParams} = new URL(request.url);
-    console.log(searchParams);
+    // console.log(searchParams);
     //
     const page = (searchParams.get("page") && parseInt(searchParams.get("page")!)) || 0;
     const limit = 2;

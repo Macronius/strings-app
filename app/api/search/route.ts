@@ -11,7 +11,7 @@ export async function GET(request: Request) {
     if (!search) {
         return NextResponse.json({error: "search parameter required"}, {status: 400});
     }
-    console.log(search)
+    // console.log(search)
     //
     const res = await sql("select id, username, avatar from users where username ilike $1 limit 10", ["%" + search + "%"]);
     // TODO-08 - can be modified to search for tags or content

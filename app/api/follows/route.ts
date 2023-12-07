@@ -25,8 +25,8 @@ export async function POST(request: Request) {
     const jwtPayload = await getJWTPayload();
     //
     const json = await request.json();
-    console.log("_____ json _____");
-    console.log(json);
+    // console.log("_____ json _____");
+    // console.log(json);
     
     // check if user already being following
     const res1 = await sql(
