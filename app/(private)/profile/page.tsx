@@ -19,7 +19,7 @@ function Profile() {
       <h2>Profile</h2>
       <Form />
       <hr className="m-3" />
-      <PostContainer username={data.data.username} />
+      <PostContainer username={data.data.username} showEditBtn={true} />
     </div>
   )
 }
