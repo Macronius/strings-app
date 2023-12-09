@@ -1,6 +1,8 @@
 import { jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
+// NOTE: SQL cannot be run in middleware file
+
 // AUTHENTICATION MIDDLEWARE
 export async function middleware(request: NextRequest) {
   //
