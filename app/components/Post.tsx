@@ -15,7 +15,7 @@ function Post({ post, showEditBtn }: { post: PostI, showEditBtn?: boolean }) {
 
   return (
     <div className="flex">
-      <div className="flex items-center">
+      <div className="flex items-start">
         {post.avatar && (
           <Link href={`/${post.username}`}>
             <Image
@@ -23,7 +23,7 @@ function Post({ post, showEditBtn }: { post: PostI, showEditBtn?: boolean }) {
               alt={post.username}
               width={50}
               height={50}
-              className="rounded-full mr-3"
+              className="rounded-full mt-3 mr-3"
             />
           </Link>
         )}
