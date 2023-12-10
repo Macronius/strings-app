@@ -8,7 +8,7 @@ function FollwersContainer() {
   const pages = [];
   //
   for (let i = 0; i < count; i++) {
-    pages.push(<FollowersList index={i} />);
+    pages.push(<FollowersList index={i} key={i} />);
   }
 
   //

@@ -10,7 +10,7 @@ function FollwingContainer() {
   const pages = [];
   //
   for (let i = 0; i < count; i++) {
-    pages.push(<FollowingList index={i} />);
+    pages.push(<FollowingList index={i} key={i} />);
   }
 
   //
