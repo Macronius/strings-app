@@ -7,7 +7,9 @@ function Form() {
   const [username, setUsername] = useState<undefined | string>("");
   const [password, setPassword] = useState<undefined | string>("");
   const [avatar, setAvatar] = useState<undefined | string>("");
-  const [confirmPassword, setConfirmPassword] = useState<undefined | string>("");
+  const [confirmPassword, setConfirmPassword] = useState<undefined | string>(
+    ""
+  );
   // error handling (a different way than alerts)
   const [errors, setErrors] = useState<string[]>([]);
 
@@ -32,7 +34,7 @@ function Form() {
     const res = await fetch("/api/signup", {
       method: "POST",
       // body: JSON.stringify({ username, password }),
-      body: JSON.stringify({username, avatar, password}),
+      body: JSON.stringify({ username, avatar, password }),
     });
     //
     if (res.ok) {
@@ -46,7 +48,7 @@ function Form() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-2 p-5 max-w-xs w-full bg-slate-800 rounded-lg"
+      className="flex flex-col gap-2 p-5 max-w-xs w-full dark:bg-slate-800 bg-slate-300 rounded-lg"
     >
       <div className="text-center">
         <h3 className="font-semibold">Sign Up</h3>
@@ -75,7 +77,7 @@ function Form() {
           <input
             type="text"
             className="text-black p-3 border border-slate-700 rounded-lg"
-            onChange={e => setAvatar(e.target.value)}
+            onChange={(e) => setAvatar(e.target.value)}
             value={avatar}
             id="avatar"
             placeholder="Avatar"
@@ -111,16 +113,18 @@ function Form() {
           />
         </div>
       </div>
-      <button type="submit" className="mt-4 bg-slate-900  p-3 rounded-lg">
+      <button
+        type="submit"
+        className="mt-4 dark:bg-slate-900 bg-slate-400  p-3 rounded-lg"
+      >
         Submit
       </button>
-      {
-        errors && errors.map(error => (
+      {errors &&
+        errors.map((error) => (
           <div key={error} className="text-red-600">
             {error}
           </div>
-        ))
-      }
+        ))}
     </form>
   );
 }

@@ -31,7 +31,7 @@ function PostContainer({
       <div className="flex justify-center">
         <button
           onClick={() => setCount(count + 1)}
-          className="bg-slate-900 rounded-lg py-2 px-4 my-5"
+          className="dark:bg-slate-900 bg-slate-400 rounded-lg py-2 px-4 my-5"
         >
           Load More
         </button>

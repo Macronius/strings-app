@@ -30,7 +30,10 @@ function Form({ post }: { post: PostI }) {
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <button type="submit" className="bg-slate-900 py-2 px-4 rounded-lg">
+      <button
+        type="submit"
+        className="dark:bg-slate-900 bg-slate-400 py-2 px-4 rounded-lg"
+      >
         Update Post
       </button>
     </form>

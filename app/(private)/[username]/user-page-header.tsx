@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import useSWR, {mutate} from "swr";
+import useSWR, { mutate } from "swr";
 
 // QUESTION: why does this need a separate component?
 
@@ -25,7 +25,7 @@ const UserPageHeader = ({ username }: { username: string }) => {
   // console.log(dataUser, dataFollow);
 
   if (dataUser.data.length === 0) {
-    notFound()
+    notFound();
   }
 
   //
@@ -33,30 +33,45 @@ const UserPageHeader = ({ username }: { username: string }) => {
 
   // onClick handler functions:
   async function handleUnfollow() {
-    const res = await fetch(`/api/follows/${user.id}`, {method: "DELETE"});
+    const res = await fetch(`/api/follows/${user.id}`, { method: "DELETE" });
     if (res.ok) {
-        // force revalidation of useSWR(() => `/api/follows?user_id=${dataUser.data[0].id}`), refetch, then the data will repropogate to the UI
-        mutate(`/api/follows?user_id=${user.id}`);
-        // NOTE: this enables UI to automatically display the correct button after follow/or/unfollow selected
+      // force revalidation of useSWR(() => `/api/follows?user_id=${dataUser.data[0].id}`), refetch, then the data will repropogate to the UI
+      mutate(`/api/follows?user_id=${user.id}`);
+      // NOTE: this enables UI to automatically display the correct button after follow/or/unfollow selected
     }
   }
 
   async function handleFollow() {
-    const res = await fetch("/api/follows", {method: "POST", body: JSON.stringify({user_id: user.id})});
+    const res = await fetch("/api/follows", {
+      method: "POST",
+      body: JSON.stringify({ user_id: user.id }),
+    });
     if (res.ok) {
-        // force revalidation of useSWR(() => `/api/follows?user_id=${dataUser.data[0].id}`), refetch, then the data will repropogate to the UI
-        mutate(`/api/follows?user_id=${user.id}`);
-        // NOTE: this enables UI to automatically display the correct button after follow/or/unfollow selected
+      // force revalidation of useSWR(() => `/api/follows?user_id=${dataUser.data[0].id}`), refetch, then the data will repropogate to the UI
+      mutate(`/api/follows?user_id=${user.id}`);
+      // NOTE: this enables UI to automatically display the correct button after follow/or/unfollow selected
     }
   }
 
-
-
   return (
     <header className="w-full bg-slate-700 p-4 rounded-lg flex mb-4 justify-between items-center">
-        <h1 className="text-lg font-bold">{username}</h1>
-        {dataFollow.data.length > 0 && <button onClick={handleUnfollow} className="bg-slate-900 p-2 rounded-lg">Unfollow</button>}
-        {dataFollow.data.length === 0 && <button onClick={handleFollow} className="bg-slate-900 p-2 rounded-lg">Follow</button>}
+      <h1 className="text-lg font-bold">{username}</h1>
+      {dataFollow.data.length > 0 && (
+        <button
+          onClick={handleUnfollow}
+          className="dark:bg-slate-900 bg-slate-400 p-2 rounded-lg"
+        >
+          Unfollow
+        </button>
+      )}
+      {dataFollow.data.length === 0 && (
+        <button
+          onClick={handleFollow}
+          className="dark:bg-slate-900 bg-slate-400 p-2 rounded-lg"
+        >
+          Follow
+        </button>
+      )}
     </header>
   );
 };

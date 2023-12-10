@@ -30,7 +30,7 @@ function Form() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-2 p-5 max-w-xs w-full bg-slate-800 rounded-lg"
+      className="flex flex-col gap-2 p-5 max-w-xs w-full dark:bg-slate-800 bg-slate-300 rounded-lg"
     >
       <div className="text-center">
         <h3 className="font-semibold">Sign In</h3>
@@ -66,7 +66,10 @@ function Form() {
           />
         </div>
       </div>
-      <button type="submit" className="mt-4 bg-slate-900  p-3 rounded-lg">
+      <button
+        type="submit"
+        className="mt-4 dark:bg-slate-900 bg-slate-400  p-3 rounded-lg"
+      >
         Submit
       </button>
     </form>

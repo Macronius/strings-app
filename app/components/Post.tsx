@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-function Post({ post, showEditBtn }: { post: PostI, showEditBtn?: boolean }) {
+function Post({ post, showEditBtn }: { post: PostI; showEditBtn?: boolean }) {
   //
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -39,23 +39,22 @@ function Post({ post, showEditBtn }: { post: PostI, showEditBtn?: boolean }) {
         <div className="font-bold">
           <Link href={`/${post.username}`}>{post.username}</Link>
         </div>
-        <div className="text-xs text-slate-400">
+        <div className="text-xs dark:text-slate-400 text-slate-800">
           {createdAt.toLocaleDateString("en-us", options)}
         </div>
-        <div className="text-sm">
-          {post.content}
-        </div>
+        <div className="text-sm">{post.content}</div>
       </div>
 
       {showEditBtn && (
-      <div className="text-right flex-grow">
-        <Link 
-          href={`/profile/edit-post/${post.id}`}
-          className="text-green-400"
-        >
-          Edit
-        </Link>
-      </div>)}
+        <div className="text-right flex-grow">
+          <Link
+            href={`/profile/edit-post/${post.id}`}
+            className="text-green-400"
+          >
+            Edit
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
