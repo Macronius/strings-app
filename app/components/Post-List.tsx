@@ -24,8 +24,9 @@ function PostList({
   return (
     <ul>
       {data.data.map((post: PostI) => (
-        <li key={post.id} className="my-5">
+        <li key={post.id} className="">
           <Post post={post} showEditBtn={showEditBtn} />
+          <hr className="m-5"/>
         </li>
       ))}
     </ul>

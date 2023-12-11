@@ -1,6 +1,6 @@
 // not a server component, doesn't need "use client"
 
-import { useState, ChangeEvent, useRef, useEffect,  } from "react";
+import { useState, ChangeEvent, useRef, useEffect } from "react";
 import * as _ from "lodash";
 import User from "../components/User";
 
@@ -70,8 +70,8 @@ export default function SearchBar() {
       <input
         type="text"
         placeholder="search"
-        // className="p-2 rounded-lg bg-gray-700 my-0.5 max-w-sm"
-        className="p-2 rounded-lg dark:bg-slate-700 dark:text-white bg-white text-black my-0.5 max-w-xs"
+        // className="p-2 rounded-lg dark:bg-gray-700 bg-slate-300 my-0.5 max-w-sm"
+        className="p-2 rounded-lg dark:bg-slate-600 dark:placeholder-white dark:text-white bg-white placeholder-black text-black my-0.5 max-w-xs"
         onChange={handleChange}
         onClick={handleClick}
       />

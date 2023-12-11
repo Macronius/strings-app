@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import useSWR from 'swr';
 
 export default function AvatarForm(){
@@ -10,7 +11,7 @@ export default function AvatarForm(){
     const user = data.data;
     
     return (
-        <form>
+        <div>
             {
                 user.avatar && (
                     <div>
@@ -19,7 +20,7 @@ export default function AvatarForm(){
                             alt={user.avatar}
                             width={200}
                             height={200}
-                            className="rounded-full mx-auto my-5"
+                            className="rounded-full mx-auto my-5 dark:bg-gray-400 bg-yellow-50"
                         />
                     </div>
                 )
@@ -32,7 +33,13 @@ export default function AvatarForm(){
                     />
                 )
             }
-            <input type="file" />
-        </form>
+            
+            <Link 
+                href="/avatar/upload"
+                className="dark:text-green-400 text-green-800 underline"
+            >
+                Edit avatar
+            </Link>
+        </div>
     )
 }

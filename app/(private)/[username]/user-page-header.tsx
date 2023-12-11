@@ -54,7 +54,7 @@ const UserPageHeader = ({ username }: { username: string }) => {
   }
 
   return (
-    <header className="w-full bg-slate-700 p-4 rounded-lg flex mb-4 justify-between items-center">
+    <header className="w-full dark:bg-slate-600 dark:text-white bg-white text-black p-4 rounded-lg flex mb-4 justify-between items-center">
       <h1 className="text-lg font-bold">{username}</h1>
       {dataFollow.data.length > 0 && (
         <button

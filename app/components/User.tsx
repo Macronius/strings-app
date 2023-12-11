@@ -18,7 +18,7 @@ function User({ user, href }: { user: UserI; href?: string }) {
               alt={user.username}
               width={50}
               height={50}
-              className="rounded-full mr-3"
+              className="rounded-full mr-3 dark:bg-gray-400 bg-yellow-50"
               // priority
             />
           )}
